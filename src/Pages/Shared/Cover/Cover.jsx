@@ -9,7 +9,6 @@ const Cover = ({ img, title }) => {
             bgImageAlt="the dog"
             strength={-200}
         >
-            Blur transition from min to max
             <div className="hero min-h-[700px]" >
                 <div className="hero-overlay bg-opacity-40"></div>
                 <div className="hero-content text-center text-neutral-content">
