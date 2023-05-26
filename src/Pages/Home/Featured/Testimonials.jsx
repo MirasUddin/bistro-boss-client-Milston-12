@@ -10,6 +10,7 @@ import '@smastrom/react-rating/style.css'
 import "swiper/css";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
+import { Data } from "../../Shared/DataFromBackend/DataFromBackend";
 
 
 
@@ -18,7 +19,7 @@ const Testimonials = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch('reviews.json')
+        fetch(`${Data}/reviews`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
