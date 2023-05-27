@@ -71,7 +71,7 @@ const SingUp = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sing Up</button>
-                                <p className='mt-2 text-center link'><small>New here? <Link to="/login">Create an Account</Link></small></p>
+                                <p className='mt-2 text-center link'><small>Have an Account? <Link to="/login">go to Login</Link></small></p>
                             </div>
                         </form>
                     </div>
