@@ -4,14 +4,14 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
+            .then(() => {
 
-        })
-        .catch((error)=>{
-            console.log(error.message);
-        })
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
     }
 
     const navOptions = <>
@@ -22,7 +22,9 @@ const Navbar = () => {
 
 
         {
-            user ? <><button onClick={handleLogOut} className="btn btn-ghost">Log Out</button></> :
+            user ? <>
+            <span>{user?.displayName}</span>
+                <button onClick={handleLogOut} className="btn btn-ghost">Log Out</button></> :
                 <><li><Link to="/login">Login</Link></li></>
         }
 
