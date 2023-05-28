@@ -90,10 +90,11 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input type="text" onBlur={handleValidateCaptcha} name="captcha" placeholder="Type the text captcha" className="input input-bordered" required />
+                                <input type="text" onBlur={handleValidateCaptcha} name="captcha" placeholder="Type the text captcha" className="input input-bordered"  />
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={disable} className="btn btn-primary" type="submit" value="Login" />
+                                {/* disabled a disable hobe false hobe na */}
+                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                                 <p className='mt-2 text-center link'><small>New here? <Link to="/singUp">Create an Account</Link></small></p>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // ai page a pagination kora baki royse 
-
+// TODO: implement pagination here is this page 
 
 const OrderTab = ({ items }) => {
     const pagination = {
