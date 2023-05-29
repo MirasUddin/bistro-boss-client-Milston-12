@@ -4,43 +4,60 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Data } from "../Shared/DataFromBackend/DataFromBackend";
 
 
 
 const SingUp = () => {
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
 
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
 
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         createUser(data.email, data.password)
-        .then(result =>{
-            const loggedUser = result.user;
-            
-            console.log(loggedUser);
-            updateUserProfile(data.name, data.photoUPL)
-            .then(()=>{
-                console.log('user profile information updated');
-                reset()
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'User Profile created successful',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                  navigate('/');
+            .then(result => {
+                const loggedUser = result.user;
+
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoUPL)
+                    .then(() => {
+
+                        const saveUser = {name: data.name, email: data.email}
+                        fetch(`${Data}/users`, {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                // console.log(data);
+                                if (data.insertedId) {
+
+                                    reset()
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User Profile created successful',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate('/');
+                                }
+                            })
+
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    })
             })
-            .catch(error =>{
+            .catch((error => {
                 console.log(error.message);
-            })
-        })
-        .catch((error=>{
-            console.log(error.message);
-        }))
+            }))
     };
 
     return (
@@ -67,7 +84,7 @@ const SingUp = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input  {...register("photoUPL", { required: true })} type="text"  placeholder="photo UPL" className="input input-bordered" />
+                                <input  {...register("photoUPL", { required: true })} type="text" placeholder="photo UPL" className="input input-bordered" />
                                 {errors.photoUPL && <span className="text-red-500">photo UPL is  Required</span>}
                             </div>
                             <div className="form-control">
