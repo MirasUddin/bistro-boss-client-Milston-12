@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Data } from "../Shared/DataFromBackend/DataFromBackend";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 
@@ -107,6 +108,7 @@ const SingUp = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sing Up</button>
                                 <p className='mt-2 text-center link'><small>Have an Account? <Link to="/login">go to Login</Link></small></p>
+                                <SocialLogin/>
                             </div>
                         </form>
                     </div>
